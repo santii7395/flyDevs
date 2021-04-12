@@ -1,13 +1,13 @@
 const User = require('../models/user');
 
 async function get(id){
-    let user = await User.findById(id);
+    const user = await User.findById(id);
     return user;
 }
 
 async function update(user) {
     try{
-        let updated = await User.findOneAndUpdate({ _id: user.id}, user, { new: true });
+        const updated = await User.findOneAndUpdate({ _id: user.id}, user, { new: true });
         return updated;
     } catch(error){
         throw error;

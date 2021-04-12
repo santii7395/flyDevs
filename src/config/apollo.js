@@ -28,7 +28,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     users(parent, args, context, info) {
-      for (let property in args){
+      for (const property in args){
         if (typeof args[property] === 'string'){
           console.log(args[property]);
           if (_.startsWith(args[property], '%') && _.endsWith(args[property], '%')){
@@ -52,7 +52,7 @@ const resolvers = {
   Mutation: {
     createUser(parent, args, context, info) {
       console.log(args);
-      let newPassword = bcrypt.hashSync(args.password, 10);
+      const newPassword = bcrypt.hashSync(args.password, 10);
       return userController.create(args.userId, args.name, args.lastname, args.age, newPassword).then(user =>{
         return user;
       }).catch(error => {
